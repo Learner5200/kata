@@ -1,3 +1,3 @@
-class TwiceLinearSolver {
+export default class TwiceLinearSolver {
 
 }
