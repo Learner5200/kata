@@ -12,13 +12,18 @@ export default class TwiceLinearSolver {
     const sequence = [FIRST];
     let numbersToAdd = [this.doubleAddOne(FIRST), this.tripleAddOne(FIRST)];
     while (sequence.length <= integer) {
-      const nextNumber = Math.min(...numbersToAdd);
-      sequence.push(nextNumber);
-      numbersToAdd = numbersToAdd.filter(number => number !== nextNumber);
-      numbersToAdd.push(this.doubleAddOne(nextNumber));
-      numbersToAdd.push(this.tripleAddOne(nextNumber));
+      numbersToAdd = this.process(numbersToAdd, sequence);
     }
     return sequence.pop();
+  }
+
+  static process(numbersToAdd, sequence) {
+    const nextNumber = Math.min(...numbersToAdd);
+    sequence.push(nextNumber);
+    numbersToAdd.push(this.doubleAddOne(nextNumber));
+    numbersToAdd.push(this.tripleAddOne(nextNumber));
+    const newNumbersToAdd = numbersToAdd.filter(number => number !== nextNumber);
+    return newNumbersToAdd;
   }
 
   static doubleAddOne(integer) {
