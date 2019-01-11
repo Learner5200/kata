@@ -1,3 +1,5 @@
+import DirectionsReducer from './directionsReducer';
+
 describe('DirectionsReducer', () => {
   describe('.reduce()', () => {
     it('reduces list of adjacent, opposite directions to []', () => {
