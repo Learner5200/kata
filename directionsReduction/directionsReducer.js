@@ -6,21 +6,22 @@ export default class DirectionReducer {
       WEST: 'EAST',
       EAST: 'WEST',
     };
-    const reducedDirections = directions.slice();
+    const reducedOnceDirections = directions.slice();
     for (let i = 0; i < directions.length; i += 1) {
       const currentDirection = directions[i];
       const nextDirection = directions[i + 1];
       if (oppositeDirections[currentDirection] === nextDirection) {
-        reducedDirections.splice(i, 2);
+        reducedOnceDirections.splice(i, 2);
       }
     }
-    return reducedDirections;
+    return reducedOnceDirections;
   }
 
   static reduce(directions) {
-    while (directions.length !== this.reduceOnce(directions).length) {
-      directions = this.reduceOnce(directions);
+    let reducedDirections = directions;
+    while (reducedDirections.length !== this.reduceOnce(reducedDirections).length) {
+      reducedDirections = this.reduceOnce(reducedDirections);
     }
-    return directions;
+    return reducedDirections;
   }
 }
