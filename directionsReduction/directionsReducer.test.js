@@ -10,6 +10,10 @@ describe('DirectionsReducer', () => {
       const directions = ['NORTH', 'EAST', 'WEST', 'SOUTH'];
       expect(DirectionsReducer.reduce(directions)).toEqual([]);
     });
+    it('correctly reduces directions with two adjacent opposites', () => {
+      const directions = ['NORTH', 'NORTH', 'EAST', 'WEST', 'EAST', 'SOUTH', 'SOUTH'];
+      expect(DirectionsReducer.reduce(directions)).toEqual(['NORTH', 'NORTH', 'EAST', 'SOUTH', 'SOUTH']);
+    });
     it('does not reduce non-opposite directions', () => {
       const directions = ['NORTH', 'EAST'];
       expect(DirectionsReducer.reduce(directions)).toEqual(directions);

@@ -7,11 +7,15 @@ export default class DirectionReducer {
       EAST: 'WEST',
     };
     const reducedOnceDirections = directions.slice();
-    for (let i = 0; i < directions.length; i += 1) {
+    // const deleteFrom = reducedDirections.findIndex((index) => {
+    //
+    // })
+
+    for (let i = directions.length - 1; i >= 0; i -= 1) {
       const currentDirection = directions[i];
-      const nextDirection = directions[i + 1];
+      const nextDirection = directions[i - 1];
       if (oppositeDirections[currentDirection] === nextDirection) {
-        reducedOnceDirections.splice(i, 2);
+        reducedOnceDirections.splice(i - 1, 2);
       }
     }
     return reducedOnceDirections;
