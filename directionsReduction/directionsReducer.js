@@ -1,31 +1,22 @@
 export default class DirectionReducer {
-  static reduceOnce(directions) {
+  static reduce(directions) {
     const oppositeDirections = {
       NORTH: 'SOUTH',
       SOUTH: 'NORTH',
       WEST: 'EAST',
       EAST: 'WEST',
     };
-    const reducedOnceDirections = directions.slice();
-    // const deleteFrom = reducedDirections.findIndex((index) => {
-    //
-    // })
-
-    for (let i = directions.length - 1; i >= 0; i -= 1) {
+    let i = 0;
+    while (directions[i + 1] !== undefined) {
       const currentDirection = directions[i];
-      const nextDirection = directions[i - 1];
+      const nextDirection = directions[i + 1];
       if (oppositeDirections[currentDirection] === nextDirection) {
-        reducedOnceDirections.splice(i - 1, 2);
+        directions.splice(i, 2);
+        i -= 1;
+      } else {
+        i += 1;
       }
     }
-    return reducedOnceDirections;
-  }
-
-  static reduce(directions) {
-    let reducedDirections = directions;
-    while (reducedDirections.length !== this.reduceOnce(reducedDirections).length) {
-      reducedDirections = this.reduceOnce(reducedDirections);
-    }
-    return reducedDirections;
+    return directions;
   }
 }
