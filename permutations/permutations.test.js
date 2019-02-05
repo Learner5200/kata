@@ -11,5 +11,8 @@ describe('Permuter', () => {
     it('returns all three permutations for three character string', () => {
       expect(Permuter.permute('abc')).toEqual(['abc', 'acb', 'bac', 'bca', 'cab', 'cba']);
     });
+    it('removes duplicates', () => {
+      expect(Permuter.permute('aabb')).toEqual(['aabb', 'abab', 'abba', 'baab', 'baba', 'bbaa']);
+    });
   });
 });

@@ -8,6 +8,6 @@ export default class Permuter {
         this.permute(restOfString, newCumul, array);
       }
     }
-    return array;
+    return [...new Set(array)];
   }
 }
